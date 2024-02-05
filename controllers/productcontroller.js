@@ -29,14 +29,14 @@ const getProductById = (req, res) => {
 };
 
 const addProduct = (req, res) => {
-  if (!req.user.isAdmin) {
-    return res.status(403).json({ error: 'Admin access required' });
-  }
+  // if (!req.user.isAdmin) {
+  //   return res.status(403).json({ error: 'Admin access required' });
+  // }
   const imagePath = req.file.path;
-  const { image, ...otherFields } = req.body;
+  const {  ...otherFields } = req.body;
   const newProduct = new Product({
     ...otherFields, 
-    Image: imagePath, 
+    imageURLs: imagePath, 
   });
 
   newProduct.save()
@@ -49,9 +49,9 @@ const addProduct = (req, res) => {
 };
 
 const updateProduct = (req, res) => {
-  if (!req.user.isAdmin) {
-    return res.status(403).json({ error: 'Admin access required' });
-  }
+  // if (!req.user.isAdmin) {
+  //   return res.status(403).json({ error: 'Admin access required' });
+  // }
 
   Product.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .then(product => {

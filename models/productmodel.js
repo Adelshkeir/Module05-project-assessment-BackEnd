@@ -3,7 +3,7 @@ const { Schema, model } = mongoose;
 
 const productSchema = new Schema({
   imageURLs: {
-    type: [String],
+    type: String,
     required: true
   },
   title: {
